@@ -74,12 +74,30 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, setIsCollapsed, isMobile
           </button>
         </div>
 
-        <nav className="flex flex-col p-4 space-y-2">
+        <motion.nav
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.05, // Stagger children for smooth reveal
+              },
+            },
+          }}
+          className="flex flex-col p-4 space-y-2"
+        >
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
             return (
-              <motion.div key={item.name} whileHover={{ scale: 1.05 }}>
+              <motion.div
+                key={item.name}
+                whileHover={{ scale: 1.05 }}
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+              >
                 <Link
                   to={item.path}
                   className={`flex items-center p-2 rounded-md transition-colors duration-200
@@ -95,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, setIsCollapsed, isMobile
               </motion.div>
             );
           })}
-        </nav>
+        </motion.nav>
       </motion.div>
     </>
   );

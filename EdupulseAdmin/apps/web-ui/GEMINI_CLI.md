@@ -5,15 +5,15 @@
 This file tracks the progress of enhancing the entire web-ui with advanced animations, accessibility, and performance optimizations.
 
 ### Features to Implement:
-- [ ] Scroll-triggered fade-ins
-- [ ] Smooth stagger animations
-- [ ] Page transition animations
-- [ ] Loading skeleton states
-- [ ] Smooth cubic-bezier transitions
-- [ ] Subtle hover glow
-- [ ] Button ripple effects
-- [ ] Focus ring accessibility
-- [ ] Optimize for Lighthouse performance above 90
+- [x] Scroll-triggered fade-ins
+- [x] Smooth stagger animations
+- [x] Page transition animations
+- [x] Loading skeleton states
+- [x] Smooth cubic-bezier transitions
+- [x] Subtle hover glow
+- [x] Button ripple effects
+- [x] Focus ring accessibility
+- [x] Optimize for Lighthouse performance above 90
 
 ### Subtasks:
 1.  [x] Create `GEMINI_CLI.md` (Done)
