@@ -9,7 +9,7 @@
     "dev:backend": "npm run dev --workspace=apps/backend-api",
     "dev:web": "npm run dev --workspace=apps/web-ui",
     "dev:mobile": "npm run start --workspace=apps/mobile-ui",
-    "dev": "concurrently 'npm run dev:backend' 'npm run dev:web' 'npm run dev:mobile'",
+    "dev": "npm.cmd run dev:web",,
     "build:web": "npm -w apps/web-ui run build",
     "build:api": "npm -w apps/backend-api run build"
   },
@@ -17,5 +17,8 @@
     "concurrently": "^9.2.1",
     "eslint": "^9.0.0",
     "prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.57.1"
   }
 }

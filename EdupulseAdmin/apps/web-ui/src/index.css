@@ -3,85 +3,59 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Light mode colors */
+  --color-primary: 55 65 81; /* Example: Indigo-900 - needs to be refined based on user's exact indigo/blue tone preference */
+  --color-secondary: 75 85 99; /* Example: Indigo-800 */
+  --color-accent: 236 72 153; /* pink-500 - keeping current */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --color-neutral-50: 249 250 251; /* gray-50 */
+  --color-neutral-100: 243 244 246; /* gray-100 */
+  --color-neutral-200: 229 231 235; /* gray-200 */
+  --color-neutral-300: 209 213 219; /* gray-300 */
+  --color-neutral-400: 156 163 175; /* gray-400 */
+  --color-neutral-500: 107 114 128; /* gray-500 */
+  --color-neutral-600: 75 85 99; /* gray-600 */
+  --color-neutral-700: 55 65 81; /* gray-700 */
+  --color-neutral-800: 31 41 55; /* gray-800 */
+  --color-neutral-900: 17 24 39; /* gray-900 */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  --color-success: 34 197 94; /* green-500 */
+  --color-warning: 250 204 21; /* yellow-400 */
+  --color-danger: 239 68 68; /* red-500 */
+  --color-info: 59 130 246; /* blue-500 */
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  --color-background: 243 244 246; /* neutral gray (gray-100) */
+  --color-card: 255 255 255; /* white */
+  --color-text: 17 24 39; /* gray-900 */
+  --color-text-secondary: 107 114 128; /* gray-500 */
+  --color-border: 229 231 235; /* gray-200 */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+.dark {
+  /* Dark mode colors */
+  --color-primary-dark: 96 165 250; /* blue-400 - keeping current */
+  --color-secondary-dark: 147 197 253; /* blue-300 - keeping current */
+  --color-accent-dark: 251 113 133; /* rose-400 - keeping current */
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+  --color-neutral-50-dark: 31 41 55; /* gray-800 */
+  --color-neutral-100-dark: 55 65 81; /* gray-700 */
+  --color-neutral-200-dark: 75 85 99; /* gray-600 */
+  --color-neutral-300-dark: 107 114 128; /* gray-500 */
+  --color-neutral-400-dark: 156 163 175; /* gray-400 */
+  --color-neutral-500-dark: 209 213 219; /* gray-300 */
+  --color-neutral-600-dark: 229 231 235; /* gray-200 */
+  --color-neutral-700-dark: 243 244 246; /* gray-100 */
+  --color-neutral-800-dark: 249 250 251; /* gray-50 */
+  --color-neutral-900-dark: 255 255 255; /* white */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+  --color-success-dark: 52 211 153; /* emerald-400 */
+  --color-warning-dark: 253 224 71; /* yellow-300 */
+  --color-danger-dark: 248 113 113; /* rose-400 */
+  --color-info-dark: 96 165 250; /* blue-400 */
 
-@keyframes ripple {
-  from {
-    transform: scale(0);
-    opacity: 0.7;
-  }
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-.animate-ripple {
-  animation: ripple 0.6s linear;
+  --color-background-dark: 17 24 39; /* deep slate (gray-900) */
+  --color-card-dark: 31 41 55; /* slightly lighter deep slate (gray-800) */
+  --color-text-dark: 255 255 255; /* white */
+  --color-text-secondary-dark: 156 163 175; /* gray-400 */
+  --color-border-dark: 55 65 81; /* gray-700 */
 }

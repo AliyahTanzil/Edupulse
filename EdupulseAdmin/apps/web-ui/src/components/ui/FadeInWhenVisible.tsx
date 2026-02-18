@@ -31,7 +31,8 @@ const FadeInWhenVisible: React.FC<FadeInWhenVisibleProps> = ({
         delay,
         duration,
         ease: 'easeOut',
-      },
+      } as any, // Temporary workaround for Framer Motion type issue
+
     },
   };
 

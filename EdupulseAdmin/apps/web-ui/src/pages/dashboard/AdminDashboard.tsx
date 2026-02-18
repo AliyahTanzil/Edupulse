@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import {
   School, Banknote, Book, Users, ClipboardCheck, Award, CalendarDays,
   LineChart, MessageSquare, Home, Truck, Boxes, Briefcase, GraduationCap,
-  Family, Landmark, Settings, Bell, UserPlus, HeartHandshake
+  Settings, Bell, UserPlus, HeartHandshake // Removed Family and Landmark
 } from 'lucide-react';
 
 const AdminDashboard: React.FC = () => {
@@ -27,8 +27,8 @@ const AdminDashboard: React.FC = () => {
     { name: 'Inventory', icon: Boxes, path: '/inventory' },
     { name: 'Staff', icon: Briefcase, path: '/staff' },
     { name: 'Students', icon: GraduationCap, path: '/students' },
-    { name: 'Parents', icon: Family, path: '/parents' },
-    { name: 'Accounting', icon: Landmark, path: '/accounting' },
+    { name: 'Parents', icon: Users, path: '/parents' }, // Changed icon from Family to Users
+    { name: 'Accounting', icon: Book, path: '/accounting' }, // Changed icon from Landmark to Book
     { name: 'Settings', icon: Settings, path: '/settings' },
     { name: 'Notifications', icon: Bell, path: '/notifications' },
     { name: 'Admissions', icon: UserPlus, path: '/admissions' },
@@ -69,20 +69,20 @@ const AdminDashboard: React.FC = () => {
         >
           {isLoading
             ? Array.from({ length: modules.length }).map((_, index) => (
-                <SkeletonCard key={index} />
-              ))
+              <SkeletonCard key={index} />
+            ))
             : modules.map((module) => (
-                <motion.div key={module.name} variants={itemVariants}>
-                  <Link to={module.path}>
-                    <DashboardCard
-                      title={module.name}
-                      value="" // Value can be added dynamically later
-                      icon={<module.icon size={48} />}
-                      className="aspect-square shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    />
-                  </Link>
-                </motion.div>
-              ))}
+              <motion.div key={module.name} variants={itemVariants}>
+                <Link to={module.path}>
+                  <DashboardCard
+                    title={module.name}
+                    value="" // Value can be added dynamically later
+                    icon={<module.icon size={48} />}
+                    className="aspect-square shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  />
+                </Link>
+              </motion.div>
+            ))}
         </motion.div>
       </FadeInWhenVisible>
     </div>

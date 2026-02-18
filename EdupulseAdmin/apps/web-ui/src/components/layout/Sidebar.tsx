@@ -1,122 +1,110 @@
-import React, { useEffect } from 'react';
+import React from 'react'; // Removed useState
+import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Settings, Package, Users, ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { useLocation, Link } from 'react-router-dom';
+// import { Home, Settings, Users, Folder } from 'lucide-react'; // Assuming lucide-react is installed
 
-interface SidebarProps {
-  isCollapsed: boolean;
-  setIsCollapsed: (collapsed: boolean) => void;
-  isMobileOpen: boolean;
-  setIsMobileOpen: (open: boolean) => void;
+// Install framer-motion and lucide-react if not already installed:
+// npm install framer-motion lucide-react
+
+// Define User Roles (can be extended)
+export type UserRole = 'admin' | 'editor' | 'viewer';
+
+// Define NavItem structure
+export interface NavItem {
+  name: string;
+  to: string;
+  roles?: UserRole[]; // Optional: roles that can see this item
+  // icon: React.ElementType; // Use this when lucide-react is integrated
 }
 
-const sidebarVariants = {
-  expanded: { width: 256, transition: { type: 'spring', stiffness: 100, damping: 10 } },
-  collapsed: { width: 80, transition: { type: 'spring', stiffness: 100, damping: 10 } },
-};
+interface SidebarProps {
+  navigationConfig: NavItem[];
+  userRole: UserRole;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
+}
 
-const mobileSidebarVariants = {
-  hidden: { x: '-100%', transition: { type: 'spring', stiffness: 100, damping: 20 } },
-  visible: { x: '0%', transition: { type: 'spring', stiffness: 100, damping: 20 } },
-};
+export const Sidebar: React.FC<SidebarProps> = ({ navigationConfig, userRole, isExpanded, onToggleExpand }) => {
+  // Filter navigation items based on user role
+  const filteredNavItems = navigationConfig.filter(item => {
+    if (!item.roles || item.roles.length === 0) {
+      return true; // If no roles are specified, it's visible to all
+    }
+    return item.roles.includes(userRole);
+  });
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, setIsCollapsed, isMobileOpen, setIsMobileOpen }) => {
-  const location = useLocation();
-
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+  const sidebarVariants = {
+    expanded: { width: 260 },
+    collapsed: { width: 80 },
   };
 
-  // Close mobile sidebar on route change
-  useEffect(() => {
-    if (isMobileOpen) {
-      setIsMobileOpen(false);
-    }
-  }, [location.pathname]); // Only trigger on path change
-
-  const navItems = [
-    { name: 'Dashboard', icon: Home, path: '/' },
-    { name: 'Products', icon: Package, path: '/products' },
-    { name: 'Users', icon: Users, path: '/users' },
-    { name: 'Settings', icon: Settings, path: '/settings' },
-  ];
+  const navItemVariants = {
+    expanded: { opacity: 1, x: 0 },
+    collapsed: { opacity: 0, x: -10 },
+  };
 
   return (
-    <>
-      {/* Mobile Sidebar Toggle Button (visible on mobile, hidden on desktop) */}
-      {/* Moved to MainLayout to manage mobile sidebar state, leaving this for clarity during development */}
-      {/*
-      <div className="md:hidden fixed top-4 left-4 z-50">
+    <motion.div
+      initial="expanded"
+      animate={isExpanded ? 'expanded' : 'collapsed'}
+      variants={sidebarVariants}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      className="flex flex-col h-full bg-card dark:bg-card-dark border-r border-border dark:border-border-dark shadow-lg p-4
+                 max-md:absolute max-md:h-screen max-md:z-20 max-md:shadow-xl" // Mobile slide-in drawer basic styling
+    >
+      <div className="flex items-center justify-between h-16 mb-6">
+        {isExpanded && <h1 className="text-2xl font-bold text-primary dark:text-primary-dark">Edupulse</h1>}
         <button
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className="p-2 rounded-md bg-white dark:bg-gray-800 shadow-lg text-gray-700 dark:text-gray-300"
+          onClick={onToggleExpand} // Use prop for toggling
+          className="p-2 rounded-full bg-primary dark:bg-primary-dark text-white hover:bg-primary-dark-hover dark:hover:bg-primary-hover transition-colors"
+          aria-label={isExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
         >
-          {isMobileOpen ? <X size={24} /> : <ChevronRight size={24} />}
+          {isExpanded ? '<' : '>'}
         </button>
       </div>
-      */}
 
-      {/* Desktop and Mobile Sidebar */}
-      <motion.div
-        variants={window.innerWidth < 768 ? mobileSidebarVariants : sidebarVariants}
-        initial={window.innerWidth < 768 ? "hidden" : "expanded"}
-        animate={window.innerWidth < 768 ? (isMobileOpen ? "visible" : "hidden") : (isCollapsed ? "collapsed" : "expanded")}
-        className="bg-white dark:bg-gray-800 shadow-lg h-full fixed top-0 left-0 z-40 overflow-y-auto
-                   md:block pt-16" // Adjusted pt-16 for header height
-      >
-        {/* Toggle Button for Desktop Sidebar */}
-        <div className="hidden md:flex justify-end p-4">
-          <button
-            onClick={toggleCollapse}
-            className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
-          >
-            {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-          </button>
-        </div>
-
-        <motion.nav
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.05, // Stagger children for smooth reveal
-              },
-            },
-          }}
-          className="flex flex-col p-4 space-y-2"
-        >
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = location.pathname === item.path;
-            return (
-              <motion.div
-                key={item.name}
-                whileHover={{ scale: 1.05 }}
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 },
-                }}
+      <nav className="flex-1 overflow-y-auto">
+        <ul className="space-y-2">
+          {filteredNavItems.map((item) => ( // Use filtered items
+            <li key={item.name}>
+              <NavLink
+                to={item.to}
+                className={({ isActive }: { isActive: boolean }) =>
+                  `flex items-center p-2 rounded-lg text-text dark:text-text-dark hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors
+                  ${isActive ? 'bg-primary text-white hover:bg-primary' : ''}`
+                }
               >
-                <Link
-                  to={item.path}
-                  className={`flex items-center p-2 rounded-md transition-colors duration-200
-                              ${isActive
-                                ? 'bg-blue-500 text-white'
-                                : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
-                              }
-                              ${isCollapsed ? 'justify-center' : ''}`}
+                {/* {item.icon && <item.icon className="w-6 h-6 mr-3" />} */} {/* Uncomment when lucide-react is integrated */}
+                {!isExpanded && (
+                  <span className="relative inline-block">
+                    {/* Placeholder for icon when collapsed */}
+                    <span className="w-6 h-6 bg-neutral-400 dark:bg-neutral-500 rounded-full flex items-center justify-center text-white mr-3">
+                      {item.name[0]}
+                    </span>
+                    <span className="absolute left-full ml-4 whitespace-nowrap bg-neutral-800 text-white text-sm px-2 py-1 rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200">
+                      {item.name}
+                    </span>
+                  </span>
+                )}
+                <motion.span
+                  animate={isExpanded ? 'expanded' : 'collapsed'}
+                  variants={navItemVariants}
+                  transition={{ duration: 0.2 }}
+                  className={`${isExpanded ? 'block' : 'hidden'}`}
                 >
-                  <Icon size={20} />
-                  {!isCollapsed && <span className="ml-3">{item.name}</span>}
-                </Link>
-              </motion.div>
-            );
-          })}
-        </motion.nav>
-      </motion.div>
-    </>
+                  {item.name}
+                </motion.span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Placeholder for mobile overlay/drawer handling */}
+      {/*
+        Consider adding a state for mobile menu open/close and an overlay for when the sidebar is open on mobile.
+        You might also need to use useLocation hook from react-router-dom to close the sidebar on route change for mobile.
+      */}
+    </motion.div>
   );
 };
-
-export default Sidebar;
