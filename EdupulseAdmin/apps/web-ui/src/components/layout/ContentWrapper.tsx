@@ -11,7 +11,7 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({ children, classN
 
   return (
     <div
-      className={`container mx-auto px-4 sm:px-6 lg:px-8 py-6 ${gridClasses} ${className || ''} overflow-hidden`}
+      className={`w-full px-4 sm:px-6 lg:px-8 py-6 ${gridClasses} ${className || ''} overflow-hidden`}
     >
       {children}
     </div>

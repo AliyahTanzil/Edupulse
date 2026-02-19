@@ -1,6 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MainLayout } from './components/layout/MainLayout'; // Corrected import
 import AdminDashboard from './pages/dashboard/AdminDashboard'; // Assuming this is a default export
+import ClassDashboard from './pages/dashboard/ClassDashboard';
+import ClassStudents from './pages/dashboard/ClassStudents';
+import ClassAttendance from './pages/dashboard/ClassAttendance';
+import ClassSubjects from './pages/dashboard/ClassSubjects';
+import ClassExams from './pages/dashboard/ClassExams';
+import ClassReportCards from './pages/dashboard/ClassReportCards';
+import ClassFees from './pages/dashboard/ClassFees';
+import ClassOverview from './pages/dashboard/ClassOverview';
+import Unauthorized from './pages/Unauthorized';
+import RequireSeniorManagement from './components/auth/RequireSeniorManagement';
 import { ContentWrapper } from './components/layout/ContentWrapper';
 
 // No longer needed as page transitions are handled in MainLayout
@@ -28,6 +38,27 @@ function App() {
               </ContentWrapper>
             }
           />
+          <Route 
+            path="class/:classId" 
+            element={
+              <RequireSeniorManagement>
+                <ClassDashboard />
+              </RequireSeniorManagement>
+            }
+          >
+            <Route
+              index
+              element={<ClassOverview />}
+            />
+            <Route path="students" element={<ClassStudents />} />
+            <Route path="subjects" element={<ClassSubjects />} />
+            <Route path="attendance" element={<ClassAttendance />} />
+            <Route path="exams" element={<ClassExams />} />
+            <Route path="report" element={<ClassReportCards />} />
+            <Route path="fees" element={<ClassFees />} />
+            <Route path="analytics" element={<div>Class Analytics</div>} />
+          </Route>
+          <Route path="unauthorized" element={<Unauthorized />} />
           <Route
             path="products"
             element={

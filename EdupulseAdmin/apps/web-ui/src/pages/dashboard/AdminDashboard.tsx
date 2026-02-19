@@ -7,12 +7,13 @@ import { motion } from 'framer-motion';
 import {
   School, Banknote, Book, Users, ClipboardCheck, Award, CalendarDays,
   LineChart, MessageSquare, Home, Truck, Boxes, Briefcase, GraduationCap,
-  Settings, Bell, UserPlus, HeartHandshake // Removed Family and Landmark
+  Settings, Bell, UserPlus, HeartHandshake, Presentation
 } from 'lucide-react';
 
 const AdminDashboard: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true); // State for loading
   const modules = [
+    { name: 'Class Dashboard', icon: Presentation, path: '/class/10-A' },
     { name: 'SIS', icon: School, path: '/sis' },
     { name: 'Fee Management', icon: Banknote, path: '/fee-management' },
     { name: 'Library', icon: Book, path: '/library' },
@@ -52,39 +53,31 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-6">
-      <FadeInWhenVisible delay={0.2}> {/* Wrap the entire dashboard content for a single fade-in */}
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">Admin Dashboard</h2>
-        <motion.div // motion.div is kept for staggerChildren
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.05, // Slightly reduced stagger duration for faster reveal
-              },
-            },
-          }}
-          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6"
-        >
-          {isLoading
-            ? Array.from({ length: modules.length }).map((_, index) => (
-              <SkeletonCard key={index} />
-            ))
-            : modules.map((module) => (
-              <motion.div key={module.name} variants={itemVariants}>
-                <Link to={module.path}>
-                  <DashboardCard
-                    title={module.name}
-                    value="" // Value can be added dynamically later
-                    icon={<module.icon size={48} />}
-                    className="aspect-square shadow-lg hover:shadow-xl transition-shadow duration-300"
-                  />
-                </Link>
-              </motion.div>
-            ))}
-        </motion.div>
-      </FadeInWhenVisible>
+    <div className="p-4 md:p-6 w-full max-w-[1000px] mx-auto">
+      <h2 className="text-2xl font-black text-gray-800 dark:text-white mb-6 tracking-tight">Admin Dashboard</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {isLoading
+          ? Array.from({ length: modules.length }).map((_, index) => (
+            <SkeletonCard key={index} />
+          ))
+          : modules.map((module) => (
+            <div key={module.name}>
+                                                              <Link to={module.path}>
+                                                                <DashboardCard
+                                                                  title={module.name}
+                                                                  value=""
+                                                                  icon={<module.icon size={24} className="text-primary" />}
+                                                                  className={`w-full min-h-[110px] shadow-sm hover:shadow-lg transition-all duration-300 ${
+                                                                    module.name === 'Class Dashboard' 
+                                                                      ? 'border-2 border-primary bg-primary/5' 
+                                                                      : ''
+                                                                  }`}
+                                                                />
+                                                              </Link>
+                                              
+                                          </div>
+          ))}
+      </div>
     </div>
   );
 };
