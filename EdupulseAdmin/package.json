@@ -9,7 +9,7 @@
     "dev:backend": "npm run dev --workspace=apps/backend-api",
     "dev:web": "npm run dev --workspace=apps/web-ui",
     "dev:mobile": "npm run start --workspace=apps/mobile-ui",
-    "dev": "npm.cmd run dev:web",,
+    "dev": "npm run dev:web",
     "build:web": "npm -w apps/web-ui run build",
     "build:api": "npm -w apps/backend-api run build"
   },
