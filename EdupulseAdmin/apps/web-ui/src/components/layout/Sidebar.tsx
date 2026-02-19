@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 // npm install framer-motion lucide-react
 
 // Define User Roles (can be extended)
-export type UserRole = 'admin' | 'editor' | 'viewer';
+export type UserRole = 'admin' | 'editor' | 'viewer' | 'principal' | 'vice_principal';
 
 // Define NavItem structure
 export interface NavItem {

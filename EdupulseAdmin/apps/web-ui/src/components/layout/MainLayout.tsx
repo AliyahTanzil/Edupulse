@@ -17,8 +17,8 @@ export const MainLayout: React.FC = () => {
     { name: 'Settings', to: '/settings', roles: ['admin', 'viewer'] },
   ];
 
-  // Sample user role (can be dynamic based on authentication)
-  const userRole: UserRole = 'admin'; // For testing, hardcode 'admin'
+  // Read user role from localStorage, fallback to 'viewer' if not set
+  const userRole = (localStorage.getItem('role') as UserRole) || 'viewer';
 
   const sidebarVariants = {
     expanded: { width: '16rem' }, // w-64

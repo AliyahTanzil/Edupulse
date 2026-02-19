@@ -12,7 +12,7 @@ import {
 import RippleButton from '../../components/ui/RippleButton';
 
 const ClassAttendance: React.FC = () => {
-  const [selectedMonth, setSelectedMonth] = useState('October 2025');
+  const [selectedMonth] = useState('October 2025');
 
   // Dummy Data for Monthly Bar Chart
   const monthlyData = [
