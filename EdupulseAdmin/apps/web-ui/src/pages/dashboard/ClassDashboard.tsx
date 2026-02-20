@@ -20,9 +20,9 @@ const ClassDashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-full space-y-8 animate-in fade-in duration-500">
       {/* Summary Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="dashboard-grid">
         {summaryStats.map((stat) => (
-          <div key={stat.label} className="bg-white dark:bg-neutral-900 p-6 rounded-[2rem] border border-border dark:border-border-dark shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between min-h-[140px]">
+          <div key={stat.label} className="dashboard-card flex flex-col justify-between min-h-[140px]">
             <div className="flex justify-between items-start">
               <div className={`p-3 rounded-2xl ${stat.color} shadow-inner`}>
                 <stat.icon size={24} />

@@ -46,23 +46,23 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-8 w-full max-w-[1400px] mx-auto">
-      <h2 className="text-3xl font-black text-gray-800 dark:text-white mb-10 tracking-tight">Admin Dashboard</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+    <div className="dashboard-wrapper">
+      <h2 className="text-3xl font-black text-gray-800 dark:text-white mb-10 tracking-tight px-2">Admin Dashboard</h2>
+      <div className="dashboard-grid">
         {isLoading
           ? Array.from({ length: modules.length }).map((_, index) => (
             <SkeletonCard key={index} />
           ))
           : modules.map((module) => (
-            <div key={module.name}>
-              <Link to={module.path}>
+            <div key={module.name} className="w-full max-w-full">
+              <Link to={module.path} className="block w-full">
                 <DashboardCard
                   title={module.name}
                   value=""
                   icon={<module.icon size={32} className="text-primary" />}
-                  className={`w-full min-h-[160px] shadow-sm hover:shadow-xl transition-all duration-300 ${
+                  className={`w-full min-h-[160px] ${
                     module.name === 'Class Dashboard' 
-                      ? 'border-2 border-primary bg-primary/5' 
+                      ? '!border-primary bg-primary/5' 
                       : ''
                   }`}
                 />

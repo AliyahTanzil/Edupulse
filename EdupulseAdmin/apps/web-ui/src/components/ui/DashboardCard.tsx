@@ -20,15 +20,14 @@ const DashboardCard: React.FC<DashboardCardProps> = ({
 }) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.02, boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)' }}
       whileTap={{ scale: 0.98 }}
-      className={`bg-white dark:bg-neutral-800 rounded-[2rem] border-2 border-border dark:border-border-dark shadow-sm p-6 flex flex-col items-center justify-center text-center
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-50 transition-all group overflow-hidden ${className}`}
+      className={`dashboard-card flex flex-col items-center justify-center text-center
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-50 group ${className}`}
     >
-      {icon && <div className="text-primary dark:text-primary-dark mb-4 group-hover:scale-110 transition-transform duration-300 shrink-0">{icon}</div>}
+      {icon && <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300 shrink-0">{icon}</div>}
       <div className="space-y-1 w-full overflow-hidden">
-        <h3 className={`text-sm font-black text-gray-900 dark:text-white leading-tight truncate px-2 ${titleClassName}`}>{title}</h3>
-        {value && <p className={`text-gray-500 dark:text-gray-400 text-lg font-black truncate ${valueClassName}`}>{value}</p>}
+        <h3 className={`text-sm font-black text-gray-900 leading-tight truncate px-2 ${titleClassName}`}>{title}</h3>
+        {value && <p className={`text-gray-500 text-lg font-black truncate ${valueClassName}`}>{value}</p>}
       </div>
     </motion.div>
   );

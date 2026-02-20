@@ -37,7 +37,7 @@ export const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-text dark:bg-background-dark dark:text-text-dark">
+    <div className="flex flex-col min-h-screen max-w-full overflow-x-hidden bg-background text-text dark:bg-background-dark dark:text-text-dark">
       <Header />
       <div className="flex flex-1 overflow-hidden">
         <motion.div

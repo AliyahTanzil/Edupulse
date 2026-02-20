@@ -2,6 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Reset & Overflow Fixes */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, #root {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.dashboard-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.dashboard-card {
+  width: 100%;
+  border-radius: 20px;
+  border: 2px solid #3b82f6;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+}
+
+img, svg, canvas, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent child bleed-out on rounded containers */
+[class*="rounded-"] {
+  overflow: hidden;
+}
+
 :root {
   /* Light mode colors */
   --color-primary: 55 65 81; /* Example: Indigo-900 - needs to be refined based on user's exact indigo/blue tone preference */

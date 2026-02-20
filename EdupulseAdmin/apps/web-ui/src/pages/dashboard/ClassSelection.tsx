@@ -14,8 +14,8 @@ const ClassSelection: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500 max-w-[1200px] mx-auto py-10 px-6">
-      <div className="text-center space-y-4">
+    <div className="dashboard-wrapper animate-in fade-in duration-500">
+      <div className="text-center space-y-4 mb-10">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest">
           <GraduationCap size={14} />
           Academic Year 2025-26
@@ -27,7 +27,7 @@ const ClassSelection: React.FC = () => {
       </div>
 
       {/* Search & Filter */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white dark:bg-neutral-900 p-4 rounded-3xl border border-border dark:border-border-dark shadow-sm">
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white dark:bg-neutral-900 p-4 rounded-3xl border border-border dark:border-border-dark shadow-sm mb-10">
         <div className="relative w-full md:w-96">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
           <input 
@@ -49,12 +49,12 @@ const ClassSelection: React.FC = () => {
       </div>
 
       {/* Classes Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="dashboard-grid">
         {classes.map((item) => (
           <Link 
             key={item.id} 
             to={`/class/${item.id}`}
-            className="group bg-white dark:bg-neutral-900 rounded-[2.5rem] p-8 border-2 border-transparent hover:border-primary/30 shadow-sm hover:shadow-2xl transition-all duration-500 relative overflow-hidden"
+            className="dashboard-card group relative"
           >
             <div className="relative z-10 space-y-6">
               <div className="flex justify-between items-start">
@@ -94,8 +94,8 @@ const ClassSelection: React.FC = () => {
             </div>
             
             {/* Background Decorative Element */}
-            <div className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none">
-              <GraduationCap size={180} />
+            <div className="absolute -right-6 -bottom-6 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-500 pointer-events-none text-primary group-hover:scale-110">
+              <GraduationCap size={160} />
             </div>
           </Link>
         ))}

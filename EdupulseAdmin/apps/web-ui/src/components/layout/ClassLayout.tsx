@@ -36,7 +36,7 @@ const ClassLayout: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F8FAFC] dark:bg-neutral-950 text-text dark:text-text-dark font-sans">
+    <div className="flex flex-col min-h-screen max-w-full overflow-x-hidden bg-[#F8FAFC] dark:bg-neutral-950 text-text dark:text-text-dark font-sans">
       {/* Header */}
       <header className="h-16 bg-white dark:bg-neutral-900 border-b border-border dark:border-border-dark flex items-center justify-between px-6 sticky top-0 z-30 shadow-sm">
         <div className="flex items-center gap-4">
@@ -89,30 +89,42 @@ const ClassLayout: React.FC = () => {
                     key={item.name}
                     to={item.path}
                     className={`
-                      flex items-center gap-4 p-3 rounded-2xl transition-all group
+                      flex items-center gap-3 px-4 py-3.5 rounded-[1.25rem] transition-all duration-300 group relative overflow-hidden
                       ${isActive 
-                        ? 'bg-primary text-white shadow-lg shadow-primary/20' 
-                        : 'text-textSecondary dark:text-gray-400 hover:bg-primary/5 hover:text-primary'}
+                        ? 'bg-primary text-white shadow-lg shadow-primary/30 -translate-y-0.5 z-10' 
+                        : 'bg-transparent text-textSecondary dark:text-gray-400 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-sm hover:text-primary border border-transparent hover:border-border dark:hover:border-border-dark'}
                     `}
                   >
-                    <div className={`shrink-0 ${isActive ? 'text-white' : 'text-primary'}`}>
-                      <item.icon size={22} />
+                    <div className={`shrink-0 transition-all duration-300 group-hover:scale-110 ${isActive ? 'text-white' : 'text-primary'}`}>
+                      <item.icon size={18} />
                     </div>
-                    {isSidebarOpen && <span className="font-bold text-sm tracking-wide">{item.name}</span>}
+                    {isSidebarOpen && (
+                      <span className="font-bold text-xs uppercase tracking-widest flex-1 text-center mr-4">
+                        {item.name}
+                      </span>
+                    )}
+                    
+                    {/* Subtle Active Indicator */}
+                    {isActive && (
+                      <motion.div 
+                        layoutId="activeTab"
+                        className="absolute left-0 w-1.5 h-6 bg-white rounded-r-full"
+                      />
+                    )}
                   </Link>
                 );
               })}
             </div>
 
-            <div className="p-4 border-t border-border dark:border-border-dark">
+            <div className="p-4 border-t border-border dark:border-border-dark bg-gray-50/50 dark:bg-black/20">
               <button 
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="w-full flex items-center gap-4 p-3 text-textSecondary hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-2xl transition-all"
+                className="w-full flex items-center gap-3 px-4 py-3 text-textSecondary hover:bg-white dark:hover:bg-neutral-800 rounded-[1.25rem] transition-all duration-300 border border-transparent hover:border-border dark:hover:border-border-dark hover:shadow-sm group"
               >
-                <div className={isSidebarOpen ? 'rotate-180 transition-transform' : ''}>
-                  <ChevronLeft size={22} />
+                <div className={`transition-transform duration-300 ${isSidebarOpen ? 'rotate-180' : ''}`}>
+                  <ChevronLeft size={20} className="group-hover:text-primary transition-colors" />
                 </div>
-                {isSidebarOpen && <span className="font-bold text-sm uppercase tracking-widest">Collapse</span>}
+                {isSidebarOpen && <span className="font-bold text-xs uppercase tracking-[0.2em] flex-1 text-center mr-4">Collapse</span>}
               </button>
             </div>
           </aside>
