@@ -26,20 +26,20 @@ const ClassStudents: React.FC = () => {
     <div className="animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-          <h2 className="text-xl font-bold text-text dark:text-text-dark">Student Directory</h2>
-          <p className="text-sm text-textSecondary dark:text-gray-400">
+          <h1>Student Directory</h1>
+          <p>
             Viewing students for Class <span className="text-primary font-bold">{classId}</span>
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-border dark:border-border-dark rounded-xl text-sm font-bold hover:bg-gray-50 transition-colors">
+          <button className="button-primary !bg-white dark:!bg-neutral-800 !text-textSecondary dark:!text-gray-400 !border !border-border dark:!border-border-dark hover:!bg-gray-50">
             <Download size={18} />
             <span>Export</span>
           </button>
-          <RippleButton className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform font-bold text-sm">
+          <button className="button-primary shadow-lg shadow-primary/20">
             <UserPlus size={18} />
             <span>Add Student</span>
-          </RippleButton>
+          </button>
         </div>
       </div>
 

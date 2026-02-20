@@ -15,8 +15,8 @@ const ClassSubjects: React.FC = () => {
     <div className="animate-in fade-in duration-500">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-xl font-bold text-text dark:text-text-dark">Subject Curriculum</h2>
-          <p className="text-sm text-textSecondary dark:text-gray-400">Manage subjects and assigned faculty</p>
+          <h1>Subject Curriculum</h1>
+          <p>Manage subjects and assigned faculty</p>
         </div>
       </div>
 

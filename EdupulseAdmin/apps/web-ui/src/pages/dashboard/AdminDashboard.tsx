@@ -46,29 +46,31 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="dashboard-wrapper">
-      <h1 className="px-2">Admin Dashboard</h1>
-      <div className="dashboard-grid">
-        {isLoading
-          ? Array.from({ length: modules.length }).map((_, index) => (
-            <SkeletonCard key={index} />
-          ))
-          : modules.map((module) => (
-            <div key={module.name} className="w-full max-w-full">
-              <Link to={module.path} className="block w-full">
-                <DashboardCard
-                  title={module.name}
-                  value=""
-                  icon={<module.icon size={32} className="text-primary" />}
-                  className={`w-full min-h-[160px] ${
-                    module.name === 'Class Dashboard' 
-                      ? 'bg-primary/5' 
-                      : ''
-                  }`}
-                />
-              </Link>
-            </div>
-          ))}
+    <div className="dashboard-wrapper dashboard-container">
+      <div className="section">
+        <h1 className="px-2">Admin Dashboard</h1>
+        <div className="dashboard-grid">
+          {isLoading
+            ? Array.from({ length: modules.length }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))
+            : modules.map((module) => (
+              <div key={module.name} className="w-full max-w-full">
+                <Link to={module.path} className="block w-full">
+                  <DashboardCard
+                    title={module.name}
+                    value=""
+                    icon={<module.icon size={32} className="text-primary" />}
+                    className={`w-full min-h-[160px] ${
+                      module.name === 'Class Dashboard' 
+                        ? 'bg-primary/5' 
+                        : ''
+                    }`}
+                  />
+                </Link>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

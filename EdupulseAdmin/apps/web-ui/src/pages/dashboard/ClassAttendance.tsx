@@ -44,14 +44,14 @@ const ClassAttendance: React.FC = () => {
           <p>Monthly trends and student participation</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-border dark:border-border-dark rounded-xl text-sm font-bold hover:bg-gray-50 transition-colors">
+          <button className="button-primary !bg-white dark:!bg-neutral-800 !text-textSecondary dark:!text-gray-400 !border !border-border dark:!border-border-dark hover:!bg-gray-50">
             <Download size={18} />
             <span>Report</span>
           </button>
-          <RippleButton className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl shadow-lg shadow-primary/20 font-bold text-sm">
+          <button className="button-primary shadow-lg shadow-primary/20">
             <CalendarIcon size={18} />
             <span>Mark Today</span>
-          </RippleButton>
+          </button>
         </div>
       </div>
 
@@ -95,19 +95,28 @@ const ClassAttendance: React.FC = () => {
         </div>
 
         {/* Quick Summary Stats */}
-        <div className="dashboard-card !mb-0 space-y-6">
-          <h2 className="flex items-center gap-2 !mb-0">
-            <UserCheck size={18} className="text-success" />
-            Class Summary
-          </h2>
-          <div className="space-y-4">
-            <div className="p-4 bg-gray-50 dark:bg-neutral-900/50 rounded-2xl">
-              <p className="text-[10px] font-bold text-textSecondary uppercase tracking-widest mb-1">Highest Attendance</p>
-              <p className="text-lg font-black text-success">98.4% (Aarav S.)</p>
+        <div className="space-y-6">
+          <div className="stat-card">
+            <div className="space-y-1">
+              <p className="text-[10px] font-bold text-textSecondary uppercase tracking-widest">Highest Attendance</p>
+              <div className="stat-number text-success">98.4%</div>
+              <div className="stat-subtext">Aarav Sharma</div>
             </div>
-            <div className="p-4 bg-danger/5 border border-danger/10 rounded-2xl">
-              <p className="text-[10px] font-bold text-danger uppercase tracking-widest mb-1">Critical Attention</p>
-              <p className="text-lg font-black text-danger">2 Students &lt; 60%</p>
+            <div className="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center text-success">
+              <UserCheck size={24} />
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div className="space-y-1">
+              <p className="text-[10px] font-bold text-danger uppercase tracking-widest">Critical Attention</p>
+              <div className="stat-number text-danger">02</div>
+              <div className="stat-subtext text-danger font-medium flex items-center gap-1">
+                <AlertTriangle size={12} /> Students &lt; 60%
+              </div>
+            </div>
+            <div className="w-12 h-12 bg-danger/10 rounded-xl flex items-center justify-center text-danger">
+              <AlertTriangle size={24} />
             </div>
           </div>
         </div>

@@ -65,28 +65,27 @@ const ClassReportCards: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500">
-      {/* Header Area */}
       <div className="dashboard-card mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
         <div>
-          <h2 className="text-2xl font-black text-slate-800 dark:text-white">Report Card Center</h2>
-          <p className="text-sm text-slate-500 font-medium">Generate and analyze academic performance</p>
+          <h1 className="!mb-1">Report Card Center</h1>
+          <p>Generate and analyze academic performance</p>
         </div>
         <div className="flex flex-wrap gap-3 w-full lg:w-auto">
-          <button className="flex-1 lg:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-100 dark:bg-neutral-800 text-slate-700 dark:text-slate-300 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors">
+          <button className="button-primary !bg-slate-100 dark:!bg-neutral-800 !text-slate-700 dark:!text-slate-300 hover:!bg-slate-200">
             <Download size={18} />
             Bulk Export
           </button>
-          <RippleButton className="flex-1 lg:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-indigo-200 dark:shadow-indigo-900/20">
+          <button className="button-primary !bg-indigo-600 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/20">
             <Mail size={18} />
             Notify All
-          </RippleButton>
+          </button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
         {/* Left: Student Selector List */}
         <div className="xl:col-span-4 space-y-4 h-[750px] overflow-y-auto pr-2 custom-scrollbar">
-          <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 px-2">Student Roster</h3>
+          <h2 className="!text-xs uppercase tracking-widest text-slate-400 px-2">Student Roster</h2>
           {reports.map((student) => (
             <button
               key={student.id}

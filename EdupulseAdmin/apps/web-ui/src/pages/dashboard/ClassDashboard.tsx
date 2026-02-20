@@ -18,22 +18,24 @@ const ClassDashboard: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col h-full space-y-8 animate-in fade-in duration-500">
+    <div className="flex flex-col h-full space-y-8 animate-in fade-in duration-500 dashboard-container">
       {/* Summary Stats Grid */}
-      <div className="dashboard-grid">
+      <div className="kpi-row !mt-0">
         {summaryStats.map((stat) => (
-          <div key={stat.label} className="dashboard-card !mb-0 flex flex-col justify-between min-h-[140px]">
-            <div className="flex justify-between items-start">
-              <div className={`p-3 rounded-2xl ${stat.color} shadow-inner`}>
-                <stat.icon size={24} />
+          <div key={stat.label} className="stat-card">
+            <div className="flex flex-col justify-between h-full space-y-2">
+              <div>
+                <p className="text-[10px] font-bold text-textSecondary dark:text-gray-400 uppercase tracking-widest mb-1">{stat.label}</p>
+                <div className="stat-number text-text dark:text-text-dark">{stat.value}</div>
               </div>
-              <span className={`flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full ${stat.isUp ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>
-                {stat.isUp ? '↑' : '↓'}{stat.trend}
-              </span>
+              <div className="stat-subtext">
+                <span className={`flex items-center gap-1 font-bold ${stat.isUp ? 'text-success' : 'text-danger'}`}>
+                  {stat.isUp ? '↑' : '↓'}{stat.trend} <span className="font-medium text-textSecondary opacity-70">vs last month</span>
+                </span>
+              </div>
             </div>
-            <div>
-              <p className="text-xs font-bold text-textSecondary dark:text-gray-400 uppercase tracking-widest mb-1">{stat.label}</p>
-              <h4 className="text-3xl font-black text-text dark:text-text-dark">{stat.value}</h4>
+            <div className={`p-4 rounded-2xl ${stat.color} shadow-inner`}>
+              <stat.icon size={28} />
             </div>
           </div>
         ))}

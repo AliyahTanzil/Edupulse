@@ -41,14 +41,14 @@ const ClassFees: React.FC = () => {
           <p>Term 1 Academic Year 2025-26</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-border dark:border-border-dark rounded-xl text-sm font-bold hover:bg-gray-50 transition-colors">
+          <button className="button-primary !bg-white dark:!bg-neutral-800 !text-textSecondary dark:!text-gray-400 !border !border-border dark:!border-border-dark hover:!bg-gray-50">
             <Download size={18} />
             <span>ledger</span>
           </button>
-          <RippleButton className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl shadow-lg shadow-primary/20 font-bold text-sm">
+          <button className="button-primary shadow-lg shadow-primary/20">
             <Mail size={18} />
             <span>Notify All Defaulters</span>
-          </RippleButton>
+          </button>
         </div>
       </div>
 

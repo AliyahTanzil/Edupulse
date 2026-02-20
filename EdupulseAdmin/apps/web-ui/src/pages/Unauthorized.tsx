@@ -13,17 +13,17 @@ const Unauthorized: React.FC = () => {
           </div>
         </div>
         <div className="space-y-3">
-          <h1 className="text-3xl font-black text-text dark:text-text-dark">Access Denied</h1>
-          <p className="text-textSecondary dark:text-gray-400">
+          <h1>Access Denied</h1>
+          <p>
             You do not have the required permissions to view this page. This area is reserved for Senior Management only.
           </p>
         </div>
         <div className="pt-4">
-          <Link to="/dashboard">
-            <RippleButton className="w-full flex items-center justify-center gap-2 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+          <Link to="/dashboard" className="block">
+            <button className="button-primary !w-full !py-3 !rounded-xl !text-sm shadow-lg shadow-primary/20">
               <ArrowLeft size={18} />
               <span>Back to Dashboard</span>
-            </RippleButton>
+            </button>
           </Link>
         </div>
       </div>
