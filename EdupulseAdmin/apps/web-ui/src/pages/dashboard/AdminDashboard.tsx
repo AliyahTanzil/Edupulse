@@ -47,7 +47,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <h2 className="text-3xl font-black text-gray-800 dark:text-white mb-10 tracking-tight px-2">Admin Dashboard</h2>
+      <h1 className="px-2">Admin Dashboard</h1>
       <div className="dashboard-grid">
         {isLoading
           ? Array.from({ length: modules.length }).map((_, index) => (
@@ -62,7 +62,7 @@ const AdminDashboard: React.FC = () => {
                   icon={<module.icon size={32} className="text-primary" />}
                   className={`w-full min-h-[160px] ${
                     module.name === 'Class Dashboard' 
-                      ? '!border-primary bg-primary/5' 
+                      ? 'bg-primary/5' 
                       : ''
                   }`}
                 />

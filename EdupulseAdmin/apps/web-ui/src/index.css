@@ -30,14 +30,20 @@ body, #root {
 }
 
 .dashboard-card {
+  background: rgb(var(--color-card));
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(var(--color-border));
   width: 100%;
-  border-radius: 20px;
-  border: 2px solid #3b82f6;
-  padding: 30px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   overflow: hidden;
   transition: all 0.3s ease;
+}
+
+.dark .dashboard-card {
+  background: rgb(var(--color-card-dark));
+  border: 1px solid rgb(var(--color-border-dark));
 }
 
 .dashboard-card:hover {
@@ -52,6 +58,18 @@ img, svg, canvas, video {
 /* Prevent child bleed-out on rounded containers */
 [class*="rounded-"] {
   overflow: hidden;
+}
+
+@layer base {
+  h1 {
+    @apply text-[26px] font-bold mb-2;
+  }
+  h2 {
+    @apply text-[18px] font-semibold mb-4;
+  }
+  p {
+    @apply text-[14px] text-gray-500 dark:text-gray-400;
+  }
 }
 
 :root {

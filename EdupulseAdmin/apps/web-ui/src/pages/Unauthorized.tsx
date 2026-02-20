@@ -6,7 +6,7 @@ import RippleButton from '../components/ui/RippleButton';
 const Unauthorized: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background dark:bg-background-dark p-4">
-      <div className="max-w-md w-full text-center space-y-8 bg-white dark:bg-neutral-800 p-10 rounded-3xl shadow-xl border border-border dark:border-border-dark">
+      <div className="max-w-md w-full dashboard-card !p-10 !mb-0 text-center space-y-8">
         <div className="flex justify-center">
           <div className="p-5 bg-danger/10 text-danger rounded-full animate-pulse">
             <ShieldAlert size={64} />

@@ -36,12 +36,12 @@ const ClassAttendance: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-500">
+    <div className="animate-in fade-in duration-500">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-          <h2 className="text-xl font-bold text-text dark:text-text-dark">Attendance Analytics</h2>
-          <p className="text-sm text-textSecondary dark:text-gray-400">Monthly trends and student participation</p>
+          <h1>Attendance Analytics</h1>
+          <p>Monthly trends and student participation</p>
         </div>
         <div className="flex gap-3">
           <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-border dark:border-border-dark rounded-xl text-sm font-bold hover:bg-gray-50 transition-colors">
@@ -55,14 +55,14 @@ const ClassAttendance: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {/* Monthly Attendance Chart (Simulated) */}
-        <div className="lg:col-span-2 bg-white dark:bg-neutral-800 p-6 rounded-[2rem] border border-border dark:border-border-dark shadow-sm">
+        <div className="lg:col-span-2 dashboard-card !mb-0">
           <div className="flex justify-between items-center mb-8">
-            <h3 className="font-black text-text dark:text-text-dark flex items-center gap-2">
+            <h2 className="flex items-center gap-2 !mb-0">
               <TrendingUp size={18} className="text-primary" />
               Weekly Participation
-            </h3>
+            </h2>
             <div className="flex items-center gap-3">
               <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
                 <ChevronLeft size={16} />
@@ -95,11 +95,11 @@ const ClassAttendance: React.FC = () => {
         </div>
 
         {/* Quick Summary Stats */}
-        <div className="bg-white dark:bg-neutral-800 p-6 rounded-[2rem] border border-border dark:border-border-dark shadow-sm space-y-6">
-          <h3 className="font-black text-text dark:text-text-dark flex items-center gap-2">
+        <div className="dashboard-card !mb-0 space-y-6">
+          <h2 className="flex items-center gap-2 !mb-0">
             <UserCheck size={18} className="text-success" />
             Class Summary
-          </h3>
+          </h2>
           <div className="space-y-4">
             <div className="p-4 bg-gray-50 dark:bg-neutral-900/50 rounded-2xl">
               <p className="text-[10px] font-bold text-textSecondary uppercase tracking-widest mb-1">Highest Attendance</p>
@@ -114,9 +114,9 @@ const ClassAttendance: React.FC = () => {
       </div>
 
       {/* Student Attendance List */}
-      <div className="space-y-4">
+      <div className="dashboard-card !mb-0 space-y-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <h3 className="font-black text-text dark:text-text-dark">Student Participation List</h3>
+          <h2 className="!mb-0">Student Participation List</h2>
           <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
             <input 
@@ -127,7 +127,7 @@ const ClassAttendance: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-neutral-800 rounded-3xl border border-border dark:border-border-dark overflow-hidden shadow-sm">
+        <div className="rounded-2xl border border-border dark:border-border-dark overflow-hidden shadow-sm">
           <table className="w-full text-left">
             <thead>
               <tr className="bg-gray-50/50 dark:bg-neutral-900/50 border-b border-border dark:border-border-dark">

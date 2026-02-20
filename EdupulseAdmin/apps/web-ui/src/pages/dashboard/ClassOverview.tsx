@@ -9,12 +9,12 @@ const ClassOverview: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-500">
+    <div className="animate-in fade-in duration-500">
       {/* Welcome & Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-gradient-to-br from-primary to-primary-dark p-8 rounded-3xl text-white shadow-lg shadow-primary/20 relative overflow-hidden group">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="lg:col-span-2 bg-gradient-to-br from-primary to-primary-dark p-8 rounded-[18px] text-white shadow-lg shadow-primary/20 relative overflow-hidden group">
           <div className="relative z-10">
-            <h2 className="text-3xl font-black mb-3">Welcome to the Dashboard!</h2>
+            <h1 className="text-white">Welcome to the Dashboard!</h1>
             <p className="text-white/80 max-w-md leading-relaxed mb-6">
               You have <span className="font-bold text-white">12 new notifications</span> and 4 pending tasks for this class today.
             </p>
@@ -27,16 +27,16 @@ const ClassOverview: React.FC = () => {
               </button>
             </div>
           </div>
-          <div className="absolute -right-8 -bottom-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-            <TrendingUp size={240} />
+          <div className="absolute -right-6 -bottom-6 opacity-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+            <TrendingUp size={200} />
           </div>
         </div>
 
-        <div className="bg-white dark:bg-neutral-800 p-6 rounded-3xl border border-border dark:border-border-dark shadow-sm">
-          <h3 className="font-black text-text dark:text-text-dark mb-4 flex items-center gap-2">
+        <div className="dashboard-card !mb-0">
+          <h2 className="flex items-center gap-2">
             <Bell size={18} className="text-primary" />
             Recent Announcements
-          </h3>
+          </h2>
           <div className="space-y-4">
             {announcements.map((ann) => (
               <div key={ann.id} className="flex gap-4 p-3 rounded-2xl hover:bg-gray-50 dark:hover:bg-neutral-700/50 transition-colors cursor-pointer group">
@@ -55,7 +55,7 @@ const ClassOverview: React.FC = () => {
 
       {/* Daily Snapshot */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white dark:bg-neutral-800 p-6 rounded-3xl border border-border dark:border-border-dark shadow-sm flex items-center justify-between">
+        <div className="dashboard-card flex items-center justify-between !mb-0">
           <div className="space-y-1">
             <p className="text-xs font-bold text-textSecondary dark:text-gray-400 uppercase tracking-widest">Attendance Today</p>
             <h3 className="text-3xl font-black text-success">32 / 35</h3>
@@ -69,7 +69,7 @@ const ClassOverview: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-neutral-800 p-6 rounded-3xl border border-border dark:border-border-dark shadow-sm flex items-center justify-between">
+        <div className="dashboard-card flex items-center justify-between !mb-0">
           <div className="space-y-1">
             <p className="text-xs font-bold text-textSecondary dark:text-gray-400 uppercase tracking-widest">Pending Tasks</p>
             <h3 className="text-3xl font-black text-warning">04</h3>

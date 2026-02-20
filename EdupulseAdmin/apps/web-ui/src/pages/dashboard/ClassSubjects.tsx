@@ -12,17 +12,17 @@ const ClassSubjects: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="animate-in fade-in duration-500">
+      <div className="flex justify-between items-center mb-6">
         <div>
           <h2 className="text-xl font-bold text-text dark:text-text-dark">Subject Curriculum</h2>
           <p className="text-sm text-textSecondary dark:text-gray-400">Manage subjects and assigned faculty</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="dashboard-grid">
         {subjects.map((subject) => (
-          <div key={subject.id} className="bg-white dark:bg-neutral-800 p-6 rounded-2xl border border-border dark:border-border-dark shadow-sm hover:shadow-md transition-shadow group">
+          <div key={subject.id} className="dashboard-card !mb-0 group">
             <div className="flex justify-between items-start mb-4">
               <div className="p-3 bg-primary/10 text-primary rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
                 <BookOpen size={24} />

@@ -22,7 +22,7 @@ const ClassDashboard: React.FC = () => {
       {/* Summary Stats Grid */}
       <div className="dashboard-grid">
         {summaryStats.map((stat) => (
-          <div key={stat.label} className="dashboard-card flex flex-col justify-between min-h-[140px]">
+          <div key={stat.label} className="dashboard-card !mb-0 flex flex-col justify-between min-h-[140px]">
             <div className="flex justify-between items-start">
               <div className={`p-3 rounded-2xl ${stat.color} shadow-inner`}>
                 <stat.icon size={24} />
@@ -40,7 +40,7 @@ const ClassDashboard: React.FC = () => {
       </div>
 
       {/* Dynamic Content Area */}
-      <div className="flex-1 bg-white dark:bg-neutral-900 rounded-[2.5rem] border border-border dark:border-border-dark p-8 shadow-sm overflow-hidden min-h-[500px]">
+      <div className="flex-1 dashboard-card !mb-0 p-8 min-h-[500px]">
         <Outlet />
       </div>
     </div>

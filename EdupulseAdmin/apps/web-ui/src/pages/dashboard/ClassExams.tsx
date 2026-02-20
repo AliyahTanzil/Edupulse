@@ -14,22 +14,22 @@ const ClassExams: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="animate-in fade-in duration-500">
+      <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-xl font-bold text-text dark:text-text-dark">Examinations</h2>
-          <p className="text-sm text-textSecondary dark:text-gray-400">Schedule and performance analysis</p>
+          <h1>Examinations</h1>
+          <p>Schedule and performance analysis</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Upcoming Exams */}
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-border dark:border-border-dark overflow-hidden">
-          <div className="p-4 border-b border-border dark:border-border-dark flex items-center justify-between">
-            <h3 className="font-bold flex items-center gap-2">
+        <div className="dashboard-card !mb-0 !p-0 overflow-hidden">
+          <div className="p-4 border-b border-border dark:border-border-dark flex items-center justify-between bg-gray-50/50 dark:bg-neutral-900/50">
+            <h2 className="flex items-center gap-2 !mb-0">
               <Calendar size={18} className="text-primary" />
               Upcoming Schedule
-            </h3>
+            </h2>
           </div>
           <div className="p-4 space-y-4">
             {upcomingExams.map((exam) => (
@@ -59,12 +59,12 @@ const ClassExams: React.FC = () => {
         </div>
 
         {/* performance metrics */}
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-border dark:border-border-dark overflow-hidden">
-          <div className="p-4 border-b border-border dark:border-border-dark flex items-center justify-between">
-            <h3 className="font-bold flex items-center gap-2">
+        <div className="dashboard-card !mb-0 !p-0 overflow-hidden">
+          <div className="p-4 border-b border-border dark:border-border-dark flex items-center justify-between bg-gray-50/50 dark:bg-neutral-900/50">
+            <h2 className="flex items-center gap-2 !mb-0">
               <TrendingUp size={18} className="text-success" />
               Recent Performance Average
-            </h3>
+            </h2>
           </div>
           <div className="p-4">
             <div className="space-y-5">
@@ -91,7 +91,7 @@ const ClassExams: React.FC = () => {
         </div>
       </div>
 
-      <div className="p-4 bg-info/5 rounded-2xl border border-info/20 flex items-start gap-4">
+      <div className="mt-6 p-4 bg-info/5 rounded-2xl border border-info/20 flex items-start gap-4">
         <AlertCircle className="text-info shrink-0 mt-0.5" size={20} />
         <div>
           <h4 className="text-sm font-bold text-info">Exam Registration Note</h4>

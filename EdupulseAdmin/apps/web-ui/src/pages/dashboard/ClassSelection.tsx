@@ -15,19 +15,19 @@ const ClassSelection: React.FC = () => {
 
   return (
     <div className="dashboard-wrapper animate-in fade-in duration-500">
-      <div className="text-center space-y-4 mb-10">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest">
+      <div className="text-center mb-10">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest mb-4">
           <GraduationCap size={14} />
           Academic Year 2025-26
         </div>
-        <h1 className="text-4xl font-black text-text dark:text-white tracking-tight">Class Selection Portal</h1>
-        <p className="text-textSecondary dark:text-gray-400 max-w-2xl mx-auto">
+        <h1>Class Selection Portal</h1>
+        <p className="max-w-2xl mx-auto">
           Select a specific class from the list below to manage attendance, subjects, and student performance reports.
         </p>
       </div>
 
       {/* Search & Filter */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white dark:bg-neutral-900 p-4 rounded-3xl border border-border dark:border-border-dark shadow-sm mb-10">
+      <div className="dashboard-card !p-4 !mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
         <div className="relative w-full md:w-96">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
           <input 
@@ -67,7 +67,7 @@ const ClassSelection: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-2xl font-black text-text dark:text-white mb-1">{item.name}</h3>
+                <h2 className="!mb-1">{item.name}</h2>
                 <p className="text-sm font-bold text-primary">Class ID: {item.id}</p>
               </div>
 

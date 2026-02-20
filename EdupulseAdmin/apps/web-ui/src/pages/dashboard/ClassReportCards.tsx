@@ -64,9 +64,9 @@ const ClassReportCards: React.FC = () => {
   const studentInfo = reports.find(r => r.id === selectedStudent);
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="animate-in fade-in duration-500">
       {/* Header Area */}
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 bg-white dark:bg-neutral-900 p-6 rounded-3xl border border-slate-200 dark:border-neutral-800 shadow-sm">
+      <div className="dashboard-card mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
         <div>
           <h2 className="text-2xl font-black text-slate-800 dark:text-white">Report Card Center</h2>
           <p className="text-sm text-slate-500 font-medium">Generate and analyze academic performance</p>
@@ -114,7 +114,7 @@ const ClassReportCards: React.FC = () => {
         {/* Right: Detailed Result Sheet */}
         <div className="xl:col-span-8">
           {studentData ? (
-            <div className="bg-white dark:bg-neutral-900 rounded-[2.5rem] border border-slate-200 dark:border-neutral-800 shadow-xl overflow-hidden animate-in slide-in-from-right-4 duration-500">
+            <div className="dashboard-card !mb-0 !p-0 overflow-hidden shadow-xl animate-in slide-in-from-right-4 duration-500">
               {/* Report Header */}
               <div className="bg-indigo-600 p-8 text-white relative overflow-hidden">
                 <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -132,7 +132,7 @@ const ClassReportCards: React.FC = () => {
 
               <div className="p-8 space-y-8">
                 {/* Academic Table */}
-                <div className="rounded-3xl border border-slate-100 dark:border-neutral-800 overflow-hidden">
+                <div className="rounded-2xl border border-slate-100 dark:border-neutral-800 overflow-hidden">
                   <table className="w-full text-center border-collapse">
                     <thead>
                       <tr className="bg-slate-50 dark:bg-neutral-800/50 text-[10px] font-black uppercase tracking-widest text-slate-500">
@@ -171,7 +171,7 @@ const ClassReportCards: React.FC = () => {
                   </table>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-neutral-800/50 p-6 rounded-3xl border border-dashed border-slate-200 dark:border-neutral-700">
+                <div className="bg-slate-50 dark:bg-neutral-800/50 p-6 rounded-2xl border border-dashed border-slate-200 dark:border-neutral-700">
                   <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Principal's Remarks</h4>
                   <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
                     Excellent academic performance throughout the session. Demonstrates strong analytical skills and consistent participation in class activities. Recommended for advanced elective tracks in the coming session.
@@ -180,7 +180,7 @@ const ClassReportCards: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="h-[600px] flex flex-col items-center justify-center bg-white dark:bg-neutral-900 rounded-[2.5rem] border-2 border-dashed border-slate-200 dark:border-neutral-800 text-center p-12">
+            <div className="h-[600px] flex flex-col items-center justify-center dashboard-card !mb-0 border-2 border-dashed border-slate-200 dark:border-neutral-800 text-center p-12">
               <div className="w-20 h-20 bg-slate-100 dark:bg-neutral-800 rounded-full flex items-center justify-center text-slate-400 mb-6">
                 <User size={40} />
               </div>
