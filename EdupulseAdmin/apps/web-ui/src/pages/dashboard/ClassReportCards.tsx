@@ -64,129 +64,133 @@ const ClassReportCards: React.FC = () => {
   const studentInfo = reports.find(r => r.id === selectedStudent);
 
   return (
-    <div className="animate-in fade-in duration-500">
-      <div className="dashboard-card mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-        <div>
-          <h1 className="!mb-1">Report Card Center</h1>
-          <p>Generate and analyze academic performance</p>
-        </div>
-        <div className="flex flex-wrap gap-3 w-full lg:w-auto">
-          <button className="button-primary !bg-slate-100 dark:!bg-neutral-800 !text-slate-700 dark:!text-slate-300 hover:!bg-slate-200">
-            <Download size={18} />
-            Bulk Export
-          </button>
-          <button className="button-primary !bg-indigo-600 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/20">
-            <Mail size={18} />
-            Notify All
-          </button>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
-        {/* Left: Student Selector List */}
-        <div className="xl:col-span-4 space-y-4 h-[750px] overflow-y-auto pr-2 custom-scrollbar">
-          <h2 className="!text-xs uppercase tracking-widest text-slate-400 px-2">Student Roster</h2>
-          {reports.map((student) => (
-            <button
-              key={student.id}
-              onClick={() => setSelectedStudent(student.id)}
-              className={`w-full flex items-center gap-4 p-4 rounded-[1.5rem] transition-all duration-300 text-left border-2
-                ${selectedStudent === student.id 
-                  ? 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-500 shadow-md translate-x-1' 
-                  : 'bg-white dark:bg-neutral-900 border-transparent hover:border-slate-200 dark:hover:border-neutral-800 shadow-sm'}
-              `}
-            >
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-sm
-                ${selectedStudent === student.id ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-neutral-800 text-slate-500'}
-              `}>
-                {student.name.split(' ').map(n => n[0]).join('')}
-              </div>
-              <div className="flex-1">
-                <h4 className="font-bold text-slate-800 dark:text-white leading-tight">{student.name}</h4>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">ID: EP-00{student.id}</p>
-              </div>
-              <div className={`w-2 h-2 rounded-full ${student.status === 'Generated' ? 'bg-emerald-500' : 'bg-amber-500'}`} />
-            </button>
-          ))}
-        </div>
-
-        {/* Right: Detailed Result Sheet */}
-        <div className="xl:col-span-8">
-          {studentData ? (
-            <div className="dashboard-card !mb-0 !p-0 overflow-hidden shadow-xl animate-in slide-in-from-right-4 duration-500">
-              {/* Report Header */}
-              <div className="bg-indigo-600 p-8 text-white relative overflow-hidden">
-                <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                  <div className="text-center md:text-left space-y-1">
-                    <h1 className="text-2xl font-black uppercase tracking-tight">Academic Performance Report</h1>
-                    <p className="text-indigo-100 text-xs font-bold uppercase tracking-[0.2em]">Session 2025-2026 • Final Term</p>
-                  </div>
-                  <div className="px-6 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-center">
-                    <p className="text-[10px] font-black uppercase text-indigo-100">Overall Grade</p>
-                    <p className="text-3xl font-black">A</p>
-                  </div>
-                </div>
-                <BookOpen className="absolute -right-10 -bottom-10 w-64 h-64 text-white/5 rotate-12" />
-              </div>
-
-              <div className="p-8 space-y-8">
-                {/* Academic Table */}
-                <div className="rounded-2xl border border-slate-100 dark:border-neutral-800 overflow-hidden">
-                  <table className="w-full text-center border-collapse">
-                    <thead>
-                      <tr className="bg-slate-50 dark:bg-neutral-800/50 text-[10px] font-black uppercase tracking-widest text-slate-500">
-                        <th className="px-6 py-5 text-left">Subject</th>
-                        <th className="px-4 py-5">T1</th>
-                        <th className="px-4 py-5">T2</th>
-                        <th className="px-4 py-5">T3</th>
-                        <th className="px-4 py-5 bg-indigo-50/50 dark:bg-indigo-900/10 text-indigo-600">Avg</th>
-                        <th className="px-4 py-5">Grade</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100 dark:divide-neutral-800">
-                      {classSubjects.map((subject) => {
-                        const s1 = studentData.terms.term1[subject.name] || 0;
-                        const s2 = studentData.terms.term2[subject.name] || 0;
-                        const s3 = studentData.terms.term3[subject.name] || 0;
-                        const average = Math.round((s1 + s2 + s3) / 3);
-                        const grade = getGrade(average);
-
-                        return (
-                          <tr key={subject.id} className="group">
-                            <td className="px-6 py-4 text-left font-bold text-slate-700 dark:text-slate-200">{subject.name}</td>
-                            <td className="px-4 py-4 text-sm font-medium text-slate-500">{s1}</td>
-                            <td className="px-4 py-4 text-sm font-medium text-slate-500">{s2}</td>
-                            <td className="px-4 py-4 text-sm font-medium text-slate-500">{s3}</td>
-                            <td className="px-4 py-4 text-sm font-black text-indigo-600 bg-indigo-50/30 dark:bg-indigo-900/5">{average}%</td>
-                            <td className="px-4 py-4">
-                              <span className={`px-3 py-1 rounded-lg text-xs font-black ${grade.color}`}>
-                                {grade.label}
-                              </span>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="bg-slate-50 dark:bg-neutral-800/50 p-6 rounded-2xl border border-dashed border-slate-200 dark:border-neutral-700">
-                  <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Principal's Remarks</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                    Excellent academic performance throughout the session. Demonstrates strong analytical skills and consistent participation in class activities. Recommended for advanced elective tracks in the coming session.
-                  </p>
-                </div>
-              </div>
+    <div className="animate-in fade-in duration-500 dashboard-container">
+      <div className="report-card-section">
+        <div className="dashboard-card mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+          <div>
+            <h1 className="!mb-1">Report Card Center</h1>
+            <p>Generate and analyze academic performance</p>
+            <div className="report-actions">
+              <button className="button-primary !bg-slate-100 dark:!bg-neutral-800 !text-slate-700 dark:!text-slate-300 hover:!bg-slate-200">
+                <Download size={18} />
+                Bulk Export
+              </button>
+              <button className="button-primary !bg-indigo-600 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/20">
+                <Mail size={18} />
+                Notify All
+              </button>
             </div>
-          ) : (
-            <div className="h-[600px] flex flex-col items-center justify-center dashboard-card !mb-0 border-2 border-dashed border-slate-200 dark:border-neutral-800 text-center p-12">
-              <div className="w-20 h-20 bg-slate-100 dark:bg-neutral-800 rounded-full flex items-center justify-center text-slate-400 mb-6">
-                <User size={40} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-800 dark:text-white">No Data Available</h3>
-              <p className="text-slate-500 mt-2">Please select a student from the roster to view their detailed report.</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+          {/* Left: Student Selector List */}
+          <div className="xl:col-span-4 h-[750px] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="student-roster-section">
+              <h2 className="!text-xs uppercase tracking-widest text-slate-400 px-2 mb-4">Student Roster</h2>
+              {reports.map((student) => (
+                <button
+                  key={student.id}
+                  onClick={() => setSelectedStudent(student.id)}
+                  className={`student-row 
+                    ${selectedStudent === student.id 
+                      ? '!border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 shadow-md translate-x-1' 
+                      : ''}
+                  `}
+                >
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-sm
+                    ${selectedStudent === student.id ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-neutral-800 text-slate-500'}
+                  `}>
+                    {student.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-slate-800 dark:text-white leading-tight">{student.name}</h4>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">ID: EP-00{student.id}</p>
+                  </div>
+                  <div className={`w-2 h-2 rounded-full ${student.status === 'Generated' ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                </button>
+              ))}
             </div>
-          )}
+          </div>
+
+          {/* Right: Detailed Result Sheet */}
+          <div className="xl:col-span-8">
+            {studentData ? (
+              <div className="dashboard-card !mb-0 !p-0 overflow-hidden shadow-xl animate-in slide-in-from-right-4 duration-500">
+                {/* Report Header */}
+                <div className="bg-indigo-600 p-8 text-white relative overflow-hidden">
+                  <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div className="text-center md:text-left space-y-1">
+                      <h1 className="text-2xl font-black uppercase tracking-tight">Academic Performance Report</h1>
+                      <p className="text-indigo-100 text-xs font-bold uppercase tracking-[0.2em]">Session 2025-2026 • Final Term</p>
+                    </div>
+                    <div className="px-6 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-center">
+                      <p className="text-[10px] font-black uppercase text-indigo-100">Overall Grade</p>
+                      <p className="text-3xl font-black">A</p>
+                    </div>
+                  </div>
+                  <BookOpen className="absolute -right-10 -bottom-10 w-64 h-64 text-white/5 rotate-12" />
+                </div>
+
+                <div className="p-8 space-y-8">
+                  {/* Academic Table */}
+                  <div className="rounded-2xl border border-slate-100 dark:border-neutral-800 overflow-hidden">
+                    <table className="w-full text-center border-collapse">
+                      <thead>
+                        <tr className="bg-slate-50 dark:bg-neutral-800/50 text-[10px] font-black uppercase tracking-widest text-slate-500">
+                          <th className="px-6 py-5 text-left">Subject</th>
+                          <th className="px-4 py-5">T1</th>
+                          <th className="px-4 py-5">T2</th>
+                          <th className="px-4 py-5">T3</th>
+                          <th className="px-4 py-5 bg-indigo-50/50 dark:bg-indigo-900/10 text-indigo-600">Avg</th>
+                          <th className="px-4 py-5">Grade</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 dark:divide-neutral-800">
+                        {classSubjects.map((subject) => {
+                          const s1 = studentData.terms.term1[subject.name] || 0;
+                          const s2 = studentData.terms.term2[subject.name] || 0;
+                          const s3 = studentData.terms.term3[subject.name] || 0;
+                          const average = Math.round((s1 + s2 + s3) / 3);
+                          const grade = getGrade(average);
+
+                          return (
+                            <tr key={subject.id} className="group">
+                              <td className="px-6 py-4 text-left font-bold text-slate-700 dark:text-slate-200">{subject.name}</td>
+                              <td className="px-4 py-4 text-sm font-medium text-slate-500">{s1}</td>
+                              <td className="px-4 py-4 text-sm font-medium text-slate-500">{s2}</td>
+                              <td className="px-4 py-4 text-sm font-medium text-slate-500">{s3}</td>
+                              <td className="px-4 py-4 text-sm font-black text-indigo-600 bg-indigo-50/30 dark:bg-indigo-900/5">{average}%</td>
+                              <td className="px-4 py-4">
+                                <span className={`px-3 py-1 rounded-lg text-xs font-black ${grade.color}`}>
+                                  {grade.label}
+                                </span>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="bg-slate-50 dark:bg-neutral-800/50 p-6 rounded-2xl border border-dashed border-slate-200 dark:border-neutral-700">
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Principal's Remarks</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                      Excellent academic performance throughout the session. Demonstrates strong analytical skills and consistent participation in class activities. Recommended for advanced elective tracks in the coming session.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="h-[600px] flex flex-col items-center justify-center dashboard-card !mb-0 border-2 border-dashed border-slate-200 dark:border-neutral-800 text-center p-12">
+                <div className="w-20 h-20 bg-slate-100 dark:bg-neutral-800 rounded-full flex items-center justify-center text-slate-400 mb-6">
+                  <User size={40} />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 dark:text-white">No Data Available</h3>
+                <p className="text-slate-500 mt-2">Please select a student from the roster to view their detailed report.</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const ClassSubjects: React.FC = () => {
   ];
 
   return (
-    <div className="animate-in fade-in duration-500">
+    <div className="animate-in fade-in duration-500 dashboard-container">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1>Subject Curriculum</h1>

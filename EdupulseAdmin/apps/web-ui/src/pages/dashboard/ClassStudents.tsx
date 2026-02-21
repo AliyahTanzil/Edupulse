@@ -23,7 +23,7 @@ const ClassStudents: React.FC = () => {
   ];
 
   return (
-    <div className="animate-in fade-in duration-500">
+    <div className="animate-in fade-in duration-500 dashboard-container">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
           <h1>Student Directory</h1>
