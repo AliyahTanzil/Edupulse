@@ -2,6 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Futuristic Color Scheme for Education */
+:root {
+  /* Primary Colors - Deep Ocean Blue with Cyan Accent */
+  --color-primary: 59 130 246; /* Vibrant Blue */
+  --color-secondary: 34 197 94; /* Emerald Green */
+  --color-accent: 6 182 212; /* Cyan */
+  
+  /* Neutral Colors - Light Mode */
+  --color-neutral-50: 250 250 250;
+  --color-neutral-100: 243 244 246;
+  --color-neutral-200: 229 231 235;
+  --color-neutral-300: 209 213 219;
+  --color-neutral-400: 156 163 175;
+  --color-neutral-500: 107 114 128;
+  --color-neutral-600: 75 85 99;
+  --color-neutral-700: 55 65 81;
+  --color-neutral-800: 31 41 55;
+  --color-neutral-900: 17 24 39;
+  
+  /* Status Colors */
+  --color-success: 34 197 94;
+  --color-warning: 245 158 11;
+  --color-danger: 239 68 68;
+  --color-info: 59 130 246;
+  
+  /* Background & Card - Light Mode */
+  --color-background: 255 255 255;
+  --color-card: 249 250 251;
+  --color-text: 17 24 39;
+  --color-text-secondary: 107 114 128;
+  --color-border: 229 231 235;
+  
+  /* Dark Mode Colors */
+  --color-primary-dark: 96 165 250;
+  --color-secondary-dark: 74 222 128;
+  --color-accent-dark: 34 211 238;
+  
+  --color-neutral-50-dark: 17 24 39;
+  --color-neutral-100-dark: 31 41 55;
+  --color-neutral-200-dark: 55 65 81;
+  --color-neutral-300-dark: 75 85 99;
+  --color-neutral-400-dark: 107 114 128;
+  --color-neutral-500-dark: 156 163 175;
+  --color-neutral-600-dark: 209 213 219;
+  --color-neutral-700-dark: 229 231 235;
+  --color-neutral-800-dark: 243 244 246;
+  --color-neutral-900-dark: 250 250 250;
+  
+  --color-success-dark: 74 222 128;
+  --color-warning-dark: 251 146 60;
+  --color-danger-dark: 248 113 113;
+  --color-info-dark: 96 165 250;
+  
+  --color-background-dark: 13 27 42;
+  --color-card-dark: 30 41 59;
+  --color-text-dark: 243 244 246;
+  --color-text-secondary-dark: 156 163 175;
+  --color-border-dark: 55 65 81;
+}
+
 /* Global Reset & Overflow Fixes */
 * {
   box-sizing: border-box;
@@ -13,6 +73,13 @@ body, #root {
   width: 100%;
   overflow-x: hidden;
   position: relative;
+  background: linear-gradient(135deg, rgb(var(--color-background)) 0%, rgb(var(--color-neutral-50)) 100%);
+  color: rgb(var(--color-text));
+}
+
+.dark body, .dark #root {
+  background: linear-gradient(135deg, rgb(var(--color-background-dark)) 0%, rgb(13 27 42) 100%);
+  color: rgb(var(--color-text-dark));
 }
 
 .dashboard-wrapper {

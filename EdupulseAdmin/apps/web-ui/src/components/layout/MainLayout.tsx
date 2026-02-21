@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Sidebar, NavItem, UserRole } from './Sidebar'; // Import NavItem and UserRole
+import { Sidebar, NavItem, UserRole } from './Sidebar';
 
 export const MainLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -11,18 +11,18 @@ export const MainLayout: React.FC = () => {
 
   // Sample navigation configuration
   const navigationConfig: NavItem[] = [
-    { name: 'Dashboard', to: '/dashboard', roles: ['admin', 'editor', 'viewer'] },
+    { name: 'Dashboard', to: '/dashboard', roles: ['admin', 'editor', 'viewer', 'principal', 'vice_principal'] },
     { name: 'Users', to: '/users', roles: ['admin'] },
     { name: 'Products', to: '/products', roles: ['admin', 'editor'] },
-    { name: 'Settings', to: '/settings', roles: ['admin', 'viewer'] },
+    { name: 'Settings', to: '/settings', roles: ['admin', 'viewer', 'principal'] },
   ];
 
   // Read user role from localStorage, fallback to 'viewer' if not set
   const userRole = (localStorage.getItem('role') as UserRole) || 'viewer';
 
   const sidebarVariants = {
-    expanded: { width: '16rem' }, // w-64
-    collapsed: { width: '4rem' },  // w-16
+    expanded: { width: '16rem' },
+    collapsed: { width: '5rem' },
   };
 
   const pageTransitionVariants = {
@@ -33,19 +33,23 @@ export const MainLayout: React.FC = () => {
 
   const transition = {
     duration: 0.3,
-    ease: 'easeInOut', // Changed to string literal for compatibility
+    ease: 'easeInOut',
   };
 
   return (
-    <div className="flex flex-col min-h-screen max-w-full overflow-x-hidden bg-background text-text dark:bg-background-dark dark:text-text-dark">
+    <div className="flex flex-col min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/20 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100">
+      {/* Header */}
       <Header />
+
+      {/* Main Content */}
       <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
         <motion.div
           initial={false}
           animate={isSidebarOpen ? 'expanded' : 'collapsed'}
           variants={sidebarVariants}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="relative h-full flex-shrink-0 border-r border-border dark:border-border-dark"
+          className="relative h-full flex-shrink-0"
         >
           <Sidebar
             navigationConfig={navigationConfig}
@@ -54,7 +58,9 @@ export const MainLayout: React.FC = () => {
             onToggleExpand={() => setIsSidebarOpen(!isSidebarOpen)}
           />
         </motion.div>
-        <main className="flex-1 overflow-y-auto p-4">
+
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -62,14 +68,16 @@ export const MainLayout: React.FC = () => {
               animate="animate"
               exit="exit"
               variants={pageTransitionVariants}
-              transition={transition as any} // Temporary workaround for Framer Motion type issue
-              className="h-full"
+              transition={transition as any}
+              className="h-full w-full"
             >
               <Outlet />
             </motion.div>
           </AnimatePresence>
         </main>
       </div>
+
+      {/* Footer */}
       <Footer />
     </div>
   );
