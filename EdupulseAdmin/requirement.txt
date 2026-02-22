@@ -1,0 +1,9 @@
+edupulse-admin@1.0.0 /home/sesaymohamedaugustin/Edupulse/EdupulseAdmin
+├── UNMET DEPENDENCY @rollup/rollup-win32-x64-msvc@^4.57.1
+├── UNMET DEPENDENCY backend-api@file:/home/sesaymohamedaugustin/Edupulse/EdupulseAdmin/apps/backend-api
+├── UNMET DEPENDENCY concurrently@^9.2.1
+├── UNMET DEPENDENCY eslint@^9.0.0
+├── UNMET DEPENDENCY mobile-ui@file:/home/sesaymohamedaugustin/Edupulse/EdupulseAdmin/apps/mobile-ui
+├── UNMET DEPENDENCY prettier@^3.0.0
+└── UNMET DEPENDENCY web-ui@file:/home/sesaymohamedaugustin/Edupulse/EdupulseAdmin/apps/web-ui
+
