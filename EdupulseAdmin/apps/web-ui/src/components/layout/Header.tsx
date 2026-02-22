@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Bell, User, Menu, Sun, Moon, X, Settings, LogOut, Layout, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../context/ThemeContext';
 
 export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -16,9 +17,7 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleDarkMode = () => {
-    document.documentElement.classList.toggle('dark');
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <motion.header
@@ -88,12 +87,11 @@ export const Header: React.FC = () => {
         <motion.button
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
-          onClick={toggleDarkMode}
+          onClick={toggleTheme}
           className="p-2.5 rounded-xl hover:bg-blue-100 dark:hover:bg-slate-800 transition-all text-slate-600 dark:text-slate-300"
           title="Toggle Theme"
         >
-          <Sun className="hidden dark:block" size={20} />
-          <Moon className="dark:hidden" size={20} />
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </motion.button>
 
         <div className="h-6 w-px bg-blue-200/50 dark:bg-slate-700 mx-1 sm:mx-2" />
