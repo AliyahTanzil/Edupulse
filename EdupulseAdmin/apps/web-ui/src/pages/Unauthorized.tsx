@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldAlert, ArrowLeft } from 'lucide-react';
-import RippleButton from '../components/ui/RippleButton';
+
 
 const Unauthorized: React.FC = () => {
   return (

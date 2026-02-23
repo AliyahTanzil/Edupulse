@@ -9,14 +9,13 @@ import {
   Filter,
   Users,
   CheckCircle2,
-  Clock,
-  AlertTriangle,
+
   MoreVertical,
   Receipt,
   BellRing,
   PlusCircle
 } from 'lucide-react';
-import RippleButton from '../../components/ui/RippleButton';
+
 
 const ClassFees: React.FC = () => {
   // Dummy Financial Data

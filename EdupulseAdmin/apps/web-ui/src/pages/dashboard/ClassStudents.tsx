@@ -7,7 +7,7 @@ import {
   UserPlus,
   Filter
 } from 'lucide-react';
-import RippleButton from '../../components/ui/RippleButton';
+
 
 const ClassStudents: React.FC = () => {
   const { classId } = useParams<{ classId: string }>();

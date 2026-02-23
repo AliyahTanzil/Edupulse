@@ -88,7 +88,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ navigationConfig, userRole, is
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto space-y-2">
-        {filteredNavItems.map((item, idx) => {
+        {filteredNavItems.map((item) => {
           const Icon = item.icon || defaultIcons[item.name] || Home;
           
           return (

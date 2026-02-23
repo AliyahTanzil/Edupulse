@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Bell, User, Menu, Sun, Moon, X, Settings, LogOut, Layout, Sparkles } from 'lucide-react';
+import { Search, Bell, User, Menu, Sun, Moon, Settings, LogOut, Layout } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 
 export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Mobile menu state removed - not used in current component structure
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,14 +26,8 @@ export const Header: React.FC = () => {
                    ? 'bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl border-b border-blue-100/50 dark:border-blue-900/30 shadow-lg shadow-blue-500/5 dark:shadow-blue-500/10' 
                    : 'bg-gradient-to-b from-white/98 to-blue-50/50 dark:from-slate-950/98 dark:to-slate-900/50 border-b border-blue-100/30 dark:border-blue-900/20'}`}
     >
-      {/* Left: Logo & Mobile Toggle */}
+      {/* Left: Logo */}
       <div className="flex items-center gap-3 sm:gap-4">
-        <button
-          onClick={() => setIsMobileMenuOpen(true)}
-          className="md:hidden p-2.5 rounded-xl hover:bg-blue-100 dark:hover:bg-slate-800 transition-all hover:scale-110"
-        >
-          <Menu size={20} className="text-slate-700 dark:text-slate-200" />
-        </button>
         <Link to="/" className="flex items-center gap-2.5 group">
           <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/40 group-hover:scale-110 transition-transform overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
@@ -150,74 +144,6 @@ export const Header: React.FC = () => {
           </AnimatePresence>
         </div>
       </div>
-    </motion.header>
-  );
-};
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute right-0 mt-2 w-56 bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-border dark:border-border-dark p-2 z-50"
-                >
-                  <div className="px-3 py-2 mb-2 border-b border-border dark:border-border-dark lg:hidden">
-                    <p className="text-xs font-bold">John Doe</p>
-                    <p className="text-[10px] text-gray-500">Administrator</p>
-                  </div>
-                  <button className="w-full flex items-center gap-3 px-3 py-2 text-xs font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
-                    <User size={16} className="text-gray-400" /> Profile
-                  </button>
-                  <button className="w-full flex items-center gap-3 px-3 py-2 text-xs font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
-                    <Settings size={16} className="text-gray-400" /> Account Settings
-                  </button>
-                  <div className="h-px bg-border dark:bg-neutral-800 my-1" />
-                  <button className="w-full flex items-center gap-3 px-3 py-2 text-xs font-medium rounded-xl text-danger hover:bg-danger/5 transition-colors">
-                    <LogOut size={16} /> Sign Out
-                  </button>
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[60] md:hidden" 
-            />
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 bottom-0 w-[280px] bg-white dark:bg-neutral-900 z-[70] md:hidden shadow-2xl border-r border-border dark:border-border-dark p-6"
-            >
-              <div className="flex items-center justify-between mb-10">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
-                    <Layout size={18} />
-                  </div>
-                  <span className="font-bold">EduPulse</span>
-                </div>
-                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
-                  <X size={20} />
-                </button>
-              </div>
-              
-              <nav className="space-y-2">
-                {['Dashboard', 'Classes', 'Students', 'Finance', 'Settings'].map((item) => (
-                  <button key={item} className="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold hover:bg-primary/5 hover:text-primary transition-all">
-                    {item}
-                  </button>
-                ))}
-              </nav>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { 
   Users, 
   CalendarCheck, 
@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 
 const ClassDashboard: React.FC = () => {
-  const { classId } = useParams<{ classId: string }>();
+  // const { classId } = useParams<{ classId: string }>();
 
   const summaryStats = [
     { label: 'Total Students', value: '35', icon: Users, color: 'bg-blue-50 text-blue-500 dark:bg-blue-900/20', trend: '+2', isUp: true },

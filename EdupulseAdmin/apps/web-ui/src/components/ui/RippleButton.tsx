@@ -59,7 +59,3 @@ const RippleButton: React.FC<RippleButtonProps> = ({ children, className, varian
 };
 
 export default RippleButton;
-  );
-};
-
-export default RippleButton;

@@ -177,8 +177,3 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
-        </div>
-      </div>
-    </footer>
-  );
-};

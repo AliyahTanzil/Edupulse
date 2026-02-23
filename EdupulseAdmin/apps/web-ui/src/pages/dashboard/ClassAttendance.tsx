@@ -9,7 +9,7 @@ import {
   TrendingUp,
   UserCheck
 } from 'lucide-react';
-import RippleButton from '../../components/ui/RippleButton';
+
 
 const ClassAttendance: React.FC = () => {
   const [selectedMonth] = useState('October 2025');

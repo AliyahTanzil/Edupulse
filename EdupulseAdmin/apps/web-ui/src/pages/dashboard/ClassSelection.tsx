@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LayoutGrid, Users, GraduationCap, ArrowRight, Search, Filter } from 'lucide-react';
+import { LayoutGrid, GraduationCap, ArrowRight, Search, Filter } from 'lucide-react';
 
 const ClassSelection: React.FC = () => {
   // Dummy data for all classes

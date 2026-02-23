@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import DashboardCard from '../../components/ui/DashboardCard';
+
 import SkeletonCard from '../../components/ui/SkeletonCard';
 import {
   School, Banknote, Book, Users, ClipboardCheck, Award, CalendarDays,

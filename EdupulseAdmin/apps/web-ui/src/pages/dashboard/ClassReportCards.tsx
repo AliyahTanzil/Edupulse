@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Download, Mail, User, BookOpen } from 'lucide-react';
-import RippleButton from '../../components/ui/RippleButton';
+
 
 const ClassReportCards: React.FC = () => {
   // 1. Class Subjects
@@ -61,7 +61,7 @@ const ClassReportCards: React.FC = () => {
   };
 
   const studentData = resultsData[selectedStudent];
-  const studentInfo = reports.find(r => r.id === selectedStudent);
+  // const studentInfo = reports.find(r => r.id === selectedStudent);
 
   return (
     <div className="animate-in fade-in duration-500 dashboard-container">
